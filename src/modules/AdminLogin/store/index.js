@@ -1,6 +1,7 @@
+import { AuthSerive } from "./../../../services/auth.service";
 import axios from "axios";
-import { config } from "../../../common/config";
 
+const authService = new AuthSerive();
 export const LoginPageStore = {
   state: {
     isLoading: false,
@@ -11,9 +12,11 @@ export const LoginPageStore = {
     LOGIN_REQUEST(state) {
       state.isLoading = true;
     },
-    LOGIN_SUCCESS(state, dataLogin) {
-      sessionStorage.setItem("user", JSON.stringify(dataLogin));
-      sessionStorage.setItem("accessToken", dataLogin.accessToken);
+    LOGIN_SUCCESS(state, dataLoginResponse) {
+      sessionStorage.setItem("user", JSON.stringify(dataLoginResponse));
+      sessionStorage.setItem("accessToken", dataLoginResponse.accessToken);
+      axios.defaults.headers.common["Authorization"] =
+        dataLoginResponse.accessToken;
       state.isLoading = false;
       state.isLoginSuccess = true;
     },
@@ -33,17 +36,15 @@ export const LoginPageStore = {
   },
   actions: {
     sendLoginRequest({ commit }, dataLogin) {
+      const loginDataRequest = {
+        taiKhoan: dataLogin.username,
+        matKhau: dataLogin.password,
+      };
       commit("LOGIN_REQUEST");
-      axios({
-        url: `${config.baseUrl}/QuanLyNguoiDung/DangNhap`,
-        data: {
-          taiKhoan: dataLogin.username,
-          matKhau: dataLogin.password,
-        },
-        method: "POST",
-      })
+      authService
+        .login(loginDataRequest)
         .then((res) => {
-          if ((res.data.maLoaiNguoiDung === "KhachHang")) {
+          if (res.data.maLoaiNguoiDung === "KhachHang") {
             commit("LOGIN_NOT_ADMIN");
           } else {
             commit("LOGIN_SUCCESS", res.data);
