@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-import OverlayLoading from "./../OverlayLoading/OverlayLoading.vue";
+import OverlayLoading from "./../../../components/Loading/OverlayLoading";
 
 export default {
   components: {
