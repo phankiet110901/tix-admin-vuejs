@@ -11,7 +11,7 @@ export const router = new VueRouter({
       component: HomePage,
       children: [
         {
-          path: "/",
+          path: "/movie",
           component: MovieTable,
         },
       ],
