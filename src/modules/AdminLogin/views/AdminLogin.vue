@@ -68,7 +68,7 @@ export default {
   },
   updated() {
     if (this.isLoginSuccess) {
-      this.$router.push("/");
+      this.$router.push("/1");
     }
   },
 };

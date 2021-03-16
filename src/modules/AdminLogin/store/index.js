@@ -19,6 +19,7 @@ export const LoginPageStore = {
         dataLoginResponse.accessToken;
       state.isLoading = false;
       state.isLoginSuccess = true;
+      state.errMess = "";
     },
     LOGIN_FAILED(state, errMess) {
       state.isLoading = false;
