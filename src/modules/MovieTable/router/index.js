@@ -1,8 +1,8 @@
 export const MovieTableRouter = {
-  path: "movie",
+  path: "movie/:page",
   component: () => import("./../views/MovieTable.vue"),
   meta: {
-    requiresAuth: true, // change it true wanna chekc authoraization
+    requiresAuth: true, // change it true wanna check authoraization
     breadcrumn: [
       {
         id: 1,

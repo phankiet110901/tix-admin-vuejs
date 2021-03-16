@@ -59,7 +59,7 @@ export default {
     return {
       items: [
         { title: "Dashboard", icon: "mdi-view-dashboard", to: "/" },
-        { title: "Movie", icon: "mdi-image", to: "/movie" },
+        { title: "Movie", icon: "mdi-image", to: "/movie/1" },
         { title: "User", icon: "mdi-account", to: "/user" },
         { title: "Ticket", icon: "mdi-ticket", to: "/ticket" },
         { title: "Cinema", icon: "mdi-movie", to: "/cinema" },
@@ -92,3 +92,8 @@ export default {
 </script>
 <style lang="scss">
 </style>
+
+
+
+
+
