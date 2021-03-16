@@ -1,4 +1,4 @@
-<template lang="">
+ <template lang="">
     <div  v-on:scroll.passive="test">
         <overlayLoading 
             v-show="false"  
